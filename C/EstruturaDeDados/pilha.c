@@ -61,6 +61,8 @@ int main()
 // Adicionar um elemento no final da Pilha
 void pilha_entrar()
 {
+        pilha.dados[3] =25;
+
     if (pilha.fim == tamanho)
     {
         printf("\n\tPilha está chheia, impossivel empilhar!\n\n");
@@ -68,7 +70,7 @@ void pilha_entrar()
     }
     else
     {
-        printf("\nDigite o valor a ser empiljado: ");
+        printf("\nDigite o valor a ser empillhado: ");
         scanf("%d", &pilha.dados[pilha.fim]);
         pilha.fim++;
     }

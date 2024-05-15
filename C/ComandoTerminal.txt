@@ -1,0 +1,5 @@
+Copialr:
+gcc nomeDoArquivo.c -o saida
+
+executar arquivo
+./arquivo
