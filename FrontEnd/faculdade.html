@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculdade</title>
+
+</head>
+<body>
+    <div id="main">
+        <p id="paragrafo">
+            Acesse o 
+            <a href="http://www.exemplo.com/" id="link1">site</a>
+        </p>
+        <p id="p2">
+            <img id="imagem" src="./image.jpg" alt="paisagem">
+        </p>
+    </div>
+
+</body>
+<script>
+    const imageDom = document.getElementById('imagem')
+    const paragrafoDOm = document.getElementById('paragrafo')
+    const linkDom = document.getElementById('link1')
+
+    imageDom.src = 'paisagem.jpg'
+    linkDom.textContent = 'http://www.exemplo.com/'
+    paragrafoDOm.style.color = '#ff0000'
+</script>
+</html>

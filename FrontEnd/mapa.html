@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de churrasco</title>
+    <style>
+        #container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+        }
+
+        #mapa {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 2rem;
+            border: 1px solid #000;
+            width: 30%;
+        }
+
+        .calculadoraForm {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .calculadoraDivInput {
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <section id="container">
+
+        <div id="mapa">
+            <h1 id="title">MAPA</h1>
+            <div id="calculadora">
+                <h2 class="calculadoraTitle">Calculadora de churrasco</h2>
+                <form onsubmit="return handleSubmit()" method="post" class="calculadoraForm">
+                    <div class="calculadoraDivInput">
+                        <label for="homens">Homens:</label>
+                        <input type="number" class="homens">
+                    </div>
+                    <div class="calculadoraDivInput">
+                        <label for="mulheres">Mulheres:</label>
+                        <input type="number" class="mulheres">
+                    </div>
+                    <div class="calculadoraDivInput">
+                        <label for="criancas">Crianças:</label>
+                        <input type="number" class="criancas">
+                    </div>
+                    <input type="submit" value="Calculadora">
+                </form>
+                <div id="divResultado">
+                    <p>Quantidade de itens a serem comprados:</p>
+                    <ul id="ingredienteUl">
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <script>
+
+        function handleSubmit() {
+
+            // Buscando no as Classes dos Inputs
+            const qtdHomens = document.querySelector('.homens').value
+            const qtdMulheres = document.querySelector('.mulheres').value
+            const qtdCriancas = document.querySelector('.criancas').value
+
+
+            //Calculo dos ingredientes
+            //Homens
+            const carneBovinaHomens = 500
+            const frangoHomens = 200
+            const linguiçaHomens = 200
+            const refrigeranteHomens = 300
+            const cervejaHomens = 800
+
+            //Mulheres
+            const carneBovinaMulheres = 300
+            const frangoMulheres = 200
+            const linguiçaMulheres = 200
+            const refrigeranteMulheres = 400
+            const cervejaMulheres = 500
+
+            //Crianças
+            const carneBovinaCrianca = 200
+            const frangoCrianca = 100
+            const linguiçaCrianca = 200
+            const refrigeranteCrianca = 400
+            const cervejaCrianca = 0
+
+            // total de Ingredientes
+            const totalCarne = (qtdHomens * carneBovinaHomens) + (qtdMulheres * carneBovinaMulheres) + (qtdCriancas * carneBovinaCrianca)
+            const totalFrango = (qtdHomens * frangoHomens) + (qtdMulheres * frangoMulheres) + (qtdCriancas * frangoCrianca)
+            const totalLinguica = (qtdHomens * linguiçaHomens) + (qtdMulheres * linguiçaMulheres) + (qtdCriancas * linguiçaCrianca)
+            const totalRefrigerante = (qtdHomens * refrigeranteHomens) + (qtdMulheres * refrigeranteMulheres) + (qtdCriancas * refrigeranteCrianca)
+            const totalCerveja = (qtdHomens * cervejaHomens) + (qtdMulheres * cervejaMulheres) + (qtdCriancas * cervejaCrianca)
+
+            const ListaDeIngredientes = document.getElementById('ingredienteUl')
+            ListaDeIngredientes.innerHTML =  ` 
+            
+                        <li class="ingredienteLista">${totalCarne} de carne bovina</li>
+                        <li class="ingredienteLista">${totalFrango} de frango</li>
+                        <li class="ingredienteLista">${totalLinguica} de linguiça</li>
+                        <li class="ingredienteLista">${totalRefrigerante} de refrigerante</li>
+                        <li class="ingredienteLista">${totalCerveja} de cerveja</li>
+            `
+            return false
+        }
+
+    </script>
+</body>
+</html>
