@@ -6,6 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de churrasco</title>
     <style>
+        body {
+            background-image: url('./churras.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: 100%;
+            color: #fafafa;
+        }
+
         #container {
             display: flex;
             align-items: center;
@@ -19,20 +27,95 @@
             justify-content: center;
             flex-direction: column;
             padding: 2rem;
-            border: 1px solid #000;
+            margin-top: 3rem;
+            border-radius: 10px;
+            border: none;
             width: 30%;
+            background-color: rgba(245, 216, 215, 0.213);
+
+        }
+
+        .calculadora{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         .calculadoraForm {
             display: flex;
             flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+
+
         }
 
         .calculadoraDivInput {
-            margin-bottom: 1rem;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+
+
+            input {
+                width: 96%;
+                height: 2rem;
+                border-radius: 10px;
+                border: none;
+                padding: 5px;
+                font-size: 1.3rem;
+                color: #e55454;
+            }
+
+            #button {
+                width: 100%;
+                color: #fafafa;
+                background-color: #e55454;
+                cursor: pointer;
+                height: 2.5rem;
+
+            }
+
+            #button:hover {
+                color: #fafafa;
+                background-color: #7f0303;
+            }
+
+        }
+
+        .ingredienteLista {
+            font-size: 1.5rem;
+        }
+
+        .copyright {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            a {
+                color: #f1f3f5;
+                text-decoration: none;
+                padding: 5px;
+                border: 1px solid rgb(255, 254, 254);
+                border-radius: 5px;
+            }
+
+            a:hover {
+                background-color: #e55454;
+            }
+        }
+        @media screen and (max-width: 700px){
+
+            #mapa{
+                width: 50%;
+            }
+            
         }
     </style>
 </head>
+
 <body>
     <section id="container">
 
@@ -40,31 +123,35 @@
             <h1 id="title">MAPA</h1>
             <div id="calculadora">
                 <h2 class="calculadoraTitle">Calculadora de churrasco</h2>
+
                 <form onsubmit="return handleSubmit()" method="post" class="calculadoraForm">
                     <div class="calculadoraDivInput">
                         <label for="homens">Homens:</label>
-                        <input type="number" class="homens">
+                        <input type="number" class="homens" required>
                     </div>
                     <div class="calculadoraDivInput">
                         <label for="mulheres">Mulheres:</label>
-                        <input type="number" class="mulheres">
+                        <input type="number" class="mulheres" required>
                     </div>
                     <div class="calculadoraDivInput">
                         <label for="criancas">Crianças:</label>
-                        <input type="number" class="criancas">
+                        <input type="number" class="criancas" required>
                     </div>
-                    <input type="submit" value="Calculadora">
+                    <div class="calculadoraDivInput">
+                        <input type="submit" value="Calculadora" id="button">
+                    </div>
+
                 </form>
                 <div id="divResultado">
-                    <p>Quantidade de itens a serem comprados:</p>
-                    <ul id="ingredienteUl">
 
-                    </ul>
                 </div>
             </div>
         </div>
 
     </section>
+    <footer class="copyright">
+        <p>&copy; Copyright Ramon Rodrigues - <a href="https://rodsoudev.com">RodSouDev</a></p>
+    </footer>
     <script>
 
         function handleSubmit() {
@@ -77,25 +164,25 @@
 
             //Calculo dos ingredientes
             //Homens
-            const carneBovinaHomens = 500
-            const frangoHomens = 200
-            const linguiçaHomens = 200
-            const refrigeranteHomens = 300
-            const cervejaHomens = 800
+            const carneBovinaHomens = 0.500
+            const frangoHomens = 0.200
+            const linguiçaHomens = 0.200
+            const refrigeranteHomens = 0.300
+            const cervejaHomens = 0.800
 
             //Mulheres
-            const carneBovinaMulheres = 300
-            const frangoMulheres = 200
-            const linguiçaMulheres = 200
-            const refrigeranteMulheres = 400
-            const cervejaMulheres = 500
+            const carneBovinaMulheres = 0.300
+            const frangoMulheres = 0.200
+            const linguiçaMulheres = 0.200
+            const refrigeranteMulheres = 0.400
+            const cervejaMulheres = 0.500
 
             //Crianças
-            const carneBovinaCrianca = 200
-            const frangoCrianca = 100
-            const linguiçaCrianca = 200
-            const refrigeranteCrianca = 400
-            const cervejaCrianca = 0
+            const carneBovinaCrianca = 0.200
+            const frangoCrianca = 0.100
+            const linguiçaCrianca = 0.200
+            const refrigeranteCrianca = 0.400
+            const cervejaCrianca = 0.0
 
             // total de Ingredientes
             const totalCarne = (qtdHomens * carneBovinaHomens) + (qtdMulheres * carneBovinaMulheres) + (qtdCriancas * carneBovinaCrianca)
@@ -104,18 +191,23 @@
             const totalRefrigerante = (qtdHomens * refrigeranteHomens) + (qtdMulheres * refrigeranteMulheres) + (qtdCriancas * refrigeranteCrianca)
             const totalCerveja = (qtdHomens * cervejaHomens) + (qtdMulheres * cervejaMulheres) + (qtdCriancas * cervejaCrianca)
 
-            const ListaDeIngredientes = document.getElementById('ingredienteUl')
-            ListaDeIngredientes.innerHTML =  ` 
-            
-                        <li class="ingredienteLista">${totalCarne} de carne bovina</li>
-                        <li class="ingredienteLista">${totalFrango} de frango</li>
-                        <li class="ingredienteLista">${totalLinguica} de linguiça</li>
-                        <li class="ingredienteLista">${totalRefrigerante} de refrigerante</li>
-                        <li class="ingredienteLista">${totalCerveja} de cerveja</li>
+
+
+            const ListaDeIngredientes = document.getElementById('divResultado')
+            ListaDeIngredientes.innerHTML = ` 
+                    <h3>Quantidade de itens a serem comprados:</h3>
+                    <ul id="ingredienteUl">
+                        <li class="ingredienteLista">${totalCarne.toFixed(2)}kg de carne bovina</li>
+                        <li class="ingredienteLista">${totalFrango.toFixed(2)}kg de frango</li>
+                        <li class="ingredienteLista">${totalLinguica.toFixed(2)}kg de linguiça</li>
+                        <li class="ingredienteLista">${totalRefrigerante.toFixed(2)}l de refrigerante</li>
+                        <li class="ingredienteLista">${totalCerveja.toFixed(2)}l de cerveja</li>
+                    </ul>
             `
             return false
         }
 
     </script>
 </body>
+
 </html>
