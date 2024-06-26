@@ -11,21 +11,20 @@
             background-repeat: no-repeat;
             background-size: cover;
             background-position: 100%;
+
             color: #fafafa;
         }
 
-        #container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0;
-        }
+        .container {
 
-        #mapa {
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
+
+        }
+
+        #mapa {
             padding: 2rem;
             margin-top: 3rem;
             border-radius: 10px;
@@ -35,21 +34,12 @@
 
         }
 
-        .calculadora{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
         .calculadoraForm {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             gap: 1rem;
-
-
         }
 
         .calculadoraDivInput {
@@ -84,15 +74,22 @@
 
         }
 
-        .ingredienteLista {
-            font-size: 1.5rem;
-        }
+        #divResultado {
 
-        .copyright {
-            margin-top: 2rem;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
+
+            .ingredienteLista {
+                font-size: 1.5rem;
+            }
+        }
+
+
+
+        #copyright {
+            margin-top: 2rem;
 
             a {
                 color: #f1f3f5;
@@ -106,22 +103,42 @@
                 background-color: #e55454;
             }
         }
-        @media screen and (max-width: 700px){
 
-            #mapa{
+        @media screen and (max-width: 700px) {
+            body {
+                background-color: black;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+            }
+
+            #container {
+                height: 100vh;
+            }
+
+            #mapa {
+                margin-top: .5rem;
                 width: 50%;
             }
-            
+
+
+            .ingredienteLista p {
+                font-size: 1rem;
+
+            }
+
         }
     </style>
 </head>
 
 <body>
-    <section id="container">
+    <section id="container" class="container">
 
-        <div id="mapa">
+        <div id="mapa" class="container">
             <h1 id="title">MAPA</h1>
-            <div id="calculadora">
+            <div id="calculadora" class="container">
                 <h2 class="calculadoraTitle">Calculadora de churrasco</h2>
 
                 <form onsubmit="return handleSubmit()" method="post" class="calculadoraForm">
@@ -142,14 +159,14 @@
                     </div>
 
                 </form>
-                <div id="divResultado">
+                <div id="divResultado" class="container">
 
                 </div>
             </div>
         </div>
 
     </section>
-    <footer class="copyright">
+    <footer id="copyright" class="container">
         <p>&copy; Copyright Ramon Rodrigues - <a href="https://rodsoudev.com">RodSouDev</a></p>
     </footer>
     <script>
@@ -197,11 +214,21 @@
             ListaDeIngredientes.innerHTML = ` 
                     <h3>Quantidade de itens a serem comprados:</h3>
                     <ul id="ingredienteUl">
-                        <li class="ingredienteLista">${totalCarne.toFixed(2)}kg de carne bovina</li>
-                        <li class="ingredienteLista">${totalFrango.toFixed(2)}kg de frango</li>
-                        <li class="ingredienteLista">${totalLinguica.toFixed(2)}kg de linguiça</li>
-                        <li class="ingredienteLista">${totalRefrigerante.toFixed(2)}l de refrigerante</li>
-                        <li class="ingredienteLista">${totalCerveja.toFixed(2)}l de cerveja</li>
+                        <li class="ingredienteLista"> 
+                            <p> ${totalCarne.toFixed(2)}kg de carne bovina</p>
+                        </li>
+                        <li class="ingredienteLista">
+                           <p> ${totalFrango.toFixed(2)}kg de frango</p>
+                        </li>
+                        <li class="ingredienteLista">
+                            <p>${totalLinguica.toFixed(2)}kg de linguiça</p>
+                        </li>
+                        <li class="ingredienteLista">
+                            <p>${totalRefrigerante.toFixed(2)}l de refrigerante</p>
+                        </li>
+                        <li class="ingredienteLista">
+                           <p>${totalCerveja.toFixed(2)}l de cerveja</p>
+                        </li>
                     </ul>
             `
             return false
